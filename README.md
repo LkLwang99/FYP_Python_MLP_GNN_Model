@@ -19,4 +19,65 @@ The objectives of this project would be
 
 ## 3) Understanding The Datasets
 The machine learning model began with us extracting information from the relevant websites and APIs which we have the following dataset with column names as shown here: \
-[Date,Ticker,Company Name, IPO Price, Current Price, Price Change, Sector, Industry, SharesOffered,TotalRevenue,TotalAssets]
+[Date,Ticker,Company Name, IPO Price, Current Price, Price Change, Sector, Industry, SharesOffered,TotalRevenue,TotalAssets]\\
+We then split them up into rows and feed them onto the GPT-4 Model's API and retrieve the synthetic data in the same format given to GPT-4. The response and input can be seen below:\
+[May 15, 2050,DNSX,Dynasys Ltd.,16.00,$23.47,46.69%,Technology,Software - Infrastructure,7,950,000,$721,421,000,$439,782,000\
+Aug 22, 2050,RMRX,Ramorex Ltd.,18.00,$10.72,-40.44%,Industrials,Construction & Engineering,11,530,000,$632,831,000,$312,493,000]
+The output from the GPT 4 is then received and we have a list containing all the outputs which we receive from GPT-4. 
+
+## 4) Cleaning the Dataset,Label Encoding And Scaling
+The cleaning process starts with us receiving the outputs from GPT-4 which we then clean all commas, all the irrelevant dollar signs and percentages and full stops in the dataset.
+
+
+### 4.2) Machine Learning Models
+The machine learning models developed are Graph Neural Network and the Multilayer Perceptron, these models are developed from simple to deeper learning with more layers as we process, train and understand the networks better. The baseline model is developed and has an Mean Absolute Error of 6.40. For the machine learning models to be a success, both models should have achieved Mean Absolute Error of less than 6.40 along with other metrics that we will explore. The dataset is split into 2 parts: the training set and evaluation set. For some parts, we further split the training set into training and validation set for k-fold cross validation as seen in the Multilayer Perceptron Model.
+
+### 4.2.1) Baseline Model
+Defining the Baseline model is the set of actual IPO Prices and the way I did the baseline model was to get the mean of the actual dataset and evaluate it against the actual IPO Prices of the dataset. That would be the evaluation metrics’ score that we would have to beat to accomplish the objectives of the project. The code snippet for defining the baseline model could be found at the project.
+
+
+### 4.2.2)Graph Neural Network
+From the studies from literature review at section 2.3) Exploring the Deep Learning Models, We learnt that the formula for a graph is G=(V,E) , we start the prototype by defining the graph, set of nodes and the relationship between the nodes.
+G = Graph of Companies
+V = Set of Nodes, where each node represents a company,characterized by its features
+E = Set of edges, representing the relationships between the companies (e.g. Markets, Industries and other macroeconomic relationships)
+
+For the example above, we simulate an example of the graph that is required for machine learning and the edges that link them would be the sector and industry. With this in mind, we began to research more about the Graph Neural Network and initializing the set of features and variables we have to find. The set of variables as defined earlier would be:
+X:Company Financial Information(Shareholders Equity, Assets, Profits/losses and Industry/Sector)
+Y:Valuation of the Company (Total Share Price)
+Edges: Industry/Sector of the company
+
+With these in mind, we created the graph neural network with the PyTorch Library using the GCNConv Layer as the hidden layer and the final layer which predicts the IPO Price is a linear layer that converts all the neurons into a single output. With these models, we experimented with increasing the number of layers, number of neurons in the layers, batch normalizing and dropping out and hypertuning the parameters and finally having the best model by evaluating the validation loss with Mean Absolute Error as the primary evaluation metric.
+
+
+
+
+
+### 4.2.3) Multilayer Perceptron Model
+For the Multilayer Perceptron Model, The relevant studies were done in the project report Exploring the Deep Learning Models and we had implemented the Multilayer Perceptron after achieving the graph neural network results which were similar or close to the baseline model. 
+
+The implementation of the Multilayer Perceptron Model can be seen in the appendix where we go from a simple MLP model to a deep MLP model with the pytorch library by implementing more layers. The experiments that we had for the MLP model was by doing k-fold cross validation to check the mean validation error across the 5 fold cross validation.The code implementations can be seen in Appendix 4.5.1 to Appendix 4.5.5. From the simple MLP network to a deeper MLP network. We then also added the batch normalization and dropout to the deep MLP model as seen in the appendix. For the Initial Model, we did the k-fold cross validation and plotted the training vs validation loss graph to see how well the model is doing. The graph can be seen as in the project report
+
+
+The figure from the report shows that the Validation loss had dropped more quickly than the training loss but are both dropping, and I find this to be okay as the model is likely generalizing well to unseen data, avoiding overfitting while learning efficiently. This behavior suggests that the model is effectively capturing important patterns in the data without memorizing the training set, which can lead to better performance on new, unseen examples.
+
+
+
+We had also hypertuning the parameters using the k-fold cross validation and finally checking the evaluation metrics for the test set using the final model that was initialized after hypertuning the parameters as seen in appendix. 
+
+### 4.3) Evaluation methods
+For evaluation of the data collection processes, we check if the criterias set in our initial objective planning and aim to see if criterias are hit. For the criterias of data collection and synthetic data generation, the following objectives as defined earlier are met.
+
+For evaluation of the machine learning models, we check if the mean validation error as well as the criterias laid out in the earlier sections are met to see if the machine learning is performing worse, similar or better than the baseline model after hypertuning the parameters.
+
+### 5)Conclusion
+The project concludes with MLP performing better than the baseline model and graph neural network for this specific dataset. The performance metrics and training/validation loss would decrease when more layers are added to the MLP even though it is a little improvement from the initial simple MLP model of MAE score of 5.66 to 5.57. This shows that the model fits the data better. 
+
+The Graph Neural Network’s best performance of MAE score was at 6.37 which was slightly better than the Baseline Model’s score of 6.40.
+
+The performance of the graph neural network was unsatisfactory as it was slightly above the Baseline Model and the training/validation losses had plateaued even as I added more layers, changed the number of neurons in the output of the hidden layer and many other attempts at improving the model. However, the evaluation metrics of the models did not improve or did worse than the initial final model.
+
+With this project done, it also showcases that the LLM is capable of generating more synthetic data points than the inputs and in future, LLM could help out in many areas such as fintech, healthcare and many other sectors with these synthetic datasets.
+
+
+
