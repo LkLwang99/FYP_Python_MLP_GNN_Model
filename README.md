@@ -18,4 +18,5 @@ The objectives of this project would be
 - Hypertune Parameters Of The Machine Learning Model
 
 ## 3) Understanding The Datasets
-The machine learning model began with us extracting information from the relevant websites and APIs which we have the following dataset with column names as shown here: __[Date,Ticker,Company Name, IPO Price, Current Price, Price Change, Sector, Industry, SharesOffered,TotalRevenue,TotalAssets]
+The machine learning model began with us extracting information from the relevant websites and APIs which we have the following dataset with column names as shown here: \
+[Date,Ticker,Company Name, IPO Price, Current Price, Price Change, Sector, Industry, SharesOffered,TotalRevenue,TotalAssets]
