@@ -11,3 +11,8 @@ With this, we began on developing both Multilayer Perceptron and the Graph Neura
 ## 2)Goals And Objectives
 The objectives of this project would be 
 - Collecting initial Dataset from APIs and Websites
+- Feeding the Dataset to GPT-4 to generate Synthetic Data
+- Implementing The Baseline Model
+- Implementing A Machine Learning Model
+- Evaluation Of The Machine Learning Model
+- Hypertune Parameters Of The Machine Learning Model
