@@ -20,8 +20,11 @@ The objectives of this project would be
 ## 3) Understanding The Datasets
 The machine learning model began with us extracting information from the relevant websites and APIs which we have the following dataset with column names as shown here: \
 [Date,Ticker,Company Name, IPO Price, Current Price, Price Change, Sector, Industry, SharesOffered,TotalRevenue,TotalAssets]\\
+
 We then split them up into rows and feed them onto the GPT-4 Model's API and retrieve the synthetic data in the same format given to GPT-4. The response and input can be seen below:\
-[May 15, 2050,DNSX,Dynasys Ltd.,16.00,$23.47,46.69%,Technology,Software - Infrastructure,7,950,000,$721,421,000,$439,782,000\
+
+[May 15, 2050,DNSX,Dynasys Ltd.,16.00,$23.47,46.69%,Technology,Software - Infrastructure,7,950,000,$721,421,000,$439,782,000\\
+
 Aug 22, 2050,RMRX,Ramorex Ltd.,18.00,$10.72,-40.44%,Industrials,Construction & Engineering,11,530,000,$632,831,000,$312,493,000]
 The output from the GPT 4 is then received and we have a list containing all the outputs which we receive from GPT-4. 
 
